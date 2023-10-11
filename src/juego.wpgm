@@ -1,8 +1,31 @@
 import wollok.game.*
-import pepita.*
+import navePrincipal.*
+import navesEnemigas.*
 
 program juego {
-	game.title("Juego Base")
-	game.addVisual(pepita)
+	
+	game.title("The Imposible 'Navecita' Game")
+	
+	game.width(9)
+	game.height(15)
+	
+	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
+	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
+	
+	keyboard.down().onPressDo({naveInicial.moverHaciaAbajo()})
+	keyboard.up().onPressDo({naveInicial.moverHaciaArriba()})
+	
+	game.addVisual(navePrincipal)
+	game.addVisual(naveInicial)
+	
+	game.onTick(1000, "nave enemiga en camino", {naveInicial.moverHaciaAbajo()})
+	
+	game.whenCollideDo(navePrincipal, {elemento =>
+		game.removeVisual(elemento)
+		game.removeTickEvent("nave enemiga en camino")
+		navePrincipal.perderVida()
+		game.say(navePrincipal, navePrincipal.mostrarVida())
+	})
+	
 	game.start()
 }
