@@ -12,17 +12,28 @@ program juego {
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
 	
-	keyboard.down().onPressDo({naveInicial.moverHaciaAbajo()})
-	keyboard.up().onPressDo({naveInicial.moverHaciaArriba()})
+	var navecita
 	
 	game.addVisual(navePrincipal)
-	game.addVisual(naveInicial)
 	
-	game.onTick(1000, "nave enemiga en camino", {naveInicial.moverHaciaAbajo()})
+	game.schedule(0, {
+		navecita = pepitas.anyOne()
+		game.addVisual(navecita)
+		pepitas.remove(navecita)
+		game.onTick(500, "mover", {navecita.moverHaciaAbajo()}) //cuando aparece la siguiente nave, deja de moverse porque se cambia la prioridad
+	})
 	
-	game.whenCollideDo(navePrincipal, {elemento =>
-		game.removeVisual(elemento)
-		game.removeTickEvent("nave enemiga en camino")
+	game.schedule(1500, {
+		navecita = pepitas.anyOne()
+		game.addVisual(navecita)
+		pepitas.remove(navecita)
+		game.onTick(500, "mover", {navecita.moverHaciaAbajo()}) //se queja que moverHaciaAbajo no retorna ningun valor, y no me mueve la navecita
+	})
+	
+	game.whenCollideDo(navePrincipal, {enemigo =>
+		game.removeTickEvent("mover")
+		game.removeVisual(enemigo)
+		pepitas.add(enemigo)
 		navePrincipal.perderVida()
 		game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
