@@ -1,8 +1,8 @@
 import wollok.game.*
 
-object naveInicial {
+class NaveInicial {
 	
-	var property position = game.at(4,16)
+	var property position
 	
 	method image() = "pepita.png"
 	
@@ -15,3 +15,5 @@ object naveInicial {
 	}
 	
 }
+
+const pepitas = [new NaveInicial(position=game.at(3,10)), new NaveInicial(position=game.at(4,10)), new NaveInicial(position=game.at(5,10))]
