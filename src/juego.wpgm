@@ -28,26 +28,33 @@ program juego {
 		bala.position(game.at(navePrincipal.position().x(), 1))
 	}) // no se pueden disparar dos balas al mismo tiempo
 	
-	const pepitas = [new NaveInicial(position=game.at(3,10)), new NaveInicial(position=game.at(4,10)), new NaveInicial(position=game.at(5,10))]
+	//const pepitas = [new NaveInicial(position=game.at(3,10)), new NaveInicial(position=game.at(4,10)), new NaveInicial(position=game.at(5,10))]
 	
 	game.schedule(0, {
-		var naveEnemiga1 = pepitas.anyOne()
+		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1")
+		var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2")
+		var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3")
 		game.addVisual(naveEnemiga1)
-		pepitas.remove(naveEnemiga1)
-		game.onTick(500, "mover", {naveEnemiga1.moverHaciaAbajo()})
+		game.addVisual(naveEnemiga2)
+		game.addVisual(naveEnemiga3)
+		game.onTick(501, naveEnemiga1.nombre(), {naveEnemiga1.moverHaciaAbajo()})
+		game.onTick(401, naveEnemiga2.nombre(), {naveEnemiga2.moverHaciaAbajo()})
+		game.onTick(601, naveEnemiga3.nombre(), {naveEnemiga3.moverHaciaAbajo()})
 	})
 	
-	game.schedule(2000, {
-		var naveEnemiga2 = pepitas.anyOne()
-		game.addVisual(naveEnemiga2)
-		pepitas.remove(naveEnemiga2)
-		game.onTick(500, "mover", {naveEnemiga2.moverHaciaAbajo()})
+	game.schedule(10000, {
+		var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4")
+		var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5")
+		game.addVisual(naveEnemiga4)
+		game.addVisual(naveEnemiga5)
+		game.onTick(201, naveEnemiga4.nombre(), {naveEnemiga4.moverHaciaAbajo()})
+		game.onTick(301, naveEnemiga5.nombre(), {naveEnemiga5.moverHaciaAbajo()})
 	})
+	
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
-		game.removeTickEvent("mover")
+		game.removeTickEvent(enemigo.nombre())
 		game.removeVisual(enemigo)
-		pepitas.add(enemigo)
 		navePrincipal.perderVida()
 		game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
