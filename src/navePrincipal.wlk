@@ -31,5 +31,22 @@ object navePrincipal {
 			return "ya estoy muerto flaco"
 		}
 	}
+	
+	method disparar() {
+		game.addVisual(bala)
+		game.onTick(200, "disparo", { bala.moverHaciaArriba() })
+	}
 
+}
+
+object bala {
+	
+	var property position = navePrincipal.position()
+	
+	method image() = "pepita.png"
+	
+	method moverHaciaArriba() {
+		self.position(position.up(1))
+	}
+	
 }
