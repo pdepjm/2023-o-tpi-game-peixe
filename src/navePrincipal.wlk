@@ -3,7 +3,6 @@ import wollok.game.*
 object navePrincipal {
 
 	var property position = game.at(4,0)
-	
 	var vida = 3
 	
 	method image() = "pepita.png"
@@ -41,7 +40,7 @@ object navePrincipal {
 
 object bala {
 	
-	var property position = navePrincipal.position()
+	var property position = game.at(navePrincipal.position().x(), 1)
 	
 	method image() = "pepita.png"
 	

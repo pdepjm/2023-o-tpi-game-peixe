@@ -11,10 +11,13 @@ program juego {
 	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
-	//keyboard.space().onPressDo({navePrincipal.disparar()})
-	keyboard.space().onPressDo({
-		game.addVisual(bala)
-		game.onTick(200, "disparo", {bala.moverHaciaArriba()})
+	keyboard.space().onPressDo({navePrincipal.disparar()
+		game.whenCollideDo(bala, {enemigo => 
+			game.removeVisual(enemigo)
+			game.removeVisual(bala)
+			game.removeTickEvent("disparo")
+		})
+		bala.position(game.at(navePrincipal.position().x(), 1))
 	})
 	
 	var navecita
@@ -25,21 +28,15 @@ program juego {
 		navecita = pepitas.anyOne()
 		game.addVisual(navecita)
 		pepitas.remove(navecita)
-		//game.onTick(500, "mover", {navecita.moverHaciaAbajo()}) //cuando aparece la siguiente nave, deja de moverse porque se cambia la prioridad
+		game.onTick(500, "mover", {navecita.moverHaciaAbajo()}) //cuando aparece la siguiente nave, deja de moverse porque se cambia la prioridad
 	})
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
-		//game.removeTickEvent("mover")
+		game.removeTickEvent("mover")
 		game.removeVisual(enemigo)
 		pepitas.add(enemigo)
 		navePrincipal.perderVida()
 		game.say(navePrincipal, navePrincipal.mostrarVida())
-	})
-	
-	game.whenCollideDo(bala, {enemigo => 
-		game.removeTickEvent("disparo")
-		game.removeVisual(bala)
-		game.removeVisual(enemigo)
 	})
 	
 	game.start()
