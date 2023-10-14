@@ -28,12 +28,12 @@ program juego {
 		bala.position(game.at(navePrincipal.position().x(), 1))
 	}) // no se pueden disparar dos balas al mismo tiempo
 	
-	//const pepitas = [new NaveInicial(position=game.at(3,10)), new NaveInicial(position=game.at(4,10)), new NaveInicial(position=game.at(5,10))]
+	const navesEnemigas = ["nave1.png", "nave2.png", "nave3.png", "nave4.png"]
 	
 	game.schedule(0, {
-		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1")
-		var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2")
-		var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3")
+		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = navesEnemigas.anyOne())
+		var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2", imagen = navesEnemigas.anyOne())
+		var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3", imagen = navesEnemigas.anyOne())
 		game.addVisual(naveEnemiga1)
 		game.addVisual(naveEnemiga2)
 		game.addVisual(naveEnemiga3)
@@ -43,8 +43,8 @@ program juego {
 	})
 	
 	game.schedule(10000, {
-		var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4")
-		var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5")
+		var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4", imagen = navesEnemigas.anyOne())
+		var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5", imagen = navesEnemigas.anyOne())
 		game.addVisual(naveEnemiga4)
 		game.addVisual(naveEnemiga5)
 		game.onTick(201, naveEnemiga4.nombre(), {naveEnemiga4.moverHaciaAbajo()})

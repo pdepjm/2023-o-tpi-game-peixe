@@ -5,7 +5,9 @@ class NaveInicial {
 	var property position
 	var nombre
 	
-	method image() = "pepita.png"
+	var imagen
+	
+	method image() = imagen
 	
 	method moverHaciaAbajo() {
 		self.position(position.down(1))
