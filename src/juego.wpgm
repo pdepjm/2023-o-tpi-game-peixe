@@ -11,14 +11,20 @@ program juego {
 	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
-	keyboard.space().onPressDo({navePrincipal.disparar()
+	keyboard.space().onPressDo({
+		if (bala.position().y() >= game.height()){
+			game.removeVisual(bala)
+        	game.removeTickEvent("disparo")
+        	bala.position(game.at(navePrincipal.position().x(), 1))
+		}
+		navePrincipal.disparar()
 		game.whenCollideDo(bala, {enemigo => 
 			game.removeVisual(enemigo)
 			game.removeVisual(bala)
 			game.removeTickEvent("disparo")
 		})
 		bala.position(game.at(navePrincipal.position().x(), 1))
-	})
+	}) // no se pueden disparar dos balas al mismo tiempo
 	
 	var navecita
 	
@@ -28,7 +34,7 @@ program juego {
 		navecita = pepitas.anyOne()
 		game.addVisual(navecita)
 		pepitas.remove(navecita)
-		game.onTick(500, "mover", {navecita.moverHaciaAbajo()}) //cuando aparece la siguiente nave, deja de moverse porque se cambia la prioridad
+		game.onTick(500, "mover", {navecita.moverHaciaAbajo()})
 	})
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
@@ -38,6 +44,12 @@ program juego {
 		navePrincipal.perderVida()
 		game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
+	
+	if (bala.position().y() >= game.height()){
+		game.removeVisual(bala)
+        game.removeTickEvent("disparo")
+        bala.position(game.at(navePrincipal.position().x(), 1))
+	}
 	
 	game.start()
 }
