@@ -9,6 +9,8 @@ program juego {
 	game.width(9)
 	game.height(15)
 	
+	game.addVisual(navePrincipal)
+	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
 	keyboard.space().onPressDo({
@@ -26,15 +28,20 @@ program juego {
 		bala.position(game.at(navePrincipal.position().x(), 1))
 	}) // no se pueden disparar dos balas al mismo tiempo
 	
-	var navecita
-	
-	game.addVisual(navePrincipal)
+	const pepitas = [new NaveInicial(position=game.at(3,10)), new NaveInicial(position=game.at(4,10)), new NaveInicial(position=game.at(5,10))]
 	
 	game.schedule(0, {
-		navecita = pepitas.anyOne()
-		game.addVisual(navecita)
-		pepitas.remove(navecita)
-		game.onTick(500, "mover", {navecita.moverHaciaAbajo()})
+		var naveEnemiga1 = pepitas.anyOne()
+		game.addVisual(naveEnemiga1)
+		pepitas.remove(naveEnemiga1)
+		game.onTick(500, "mover", {naveEnemiga1.moverHaciaAbajo()})
+	})
+	
+	game.schedule(2000, {
+		var naveEnemiga2 = pepitas.anyOne()
+		game.addVisual(naveEnemiga2)
+		pepitas.remove(naveEnemiga2)
+		game.onTick(500, "mover", {naveEnemiga2.moverHaciaAbajo()})
 	})
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
@@ -44,12 +51,6 @@ program juego {
 		navePrincipal.perderVida()
 		game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
-	
-	if (bala.position().y() >= game.height()){
-		game.removeVisual(bala)
-        game.removeTickEvent("disparo")
-        bala.position(game.at(navePrincipal.position().x(), 1))
-	}
 	
 	game.start()
 }
