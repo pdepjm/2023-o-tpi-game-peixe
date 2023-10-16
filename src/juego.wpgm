@@ -10,6 +10,7 @@ program juego {
 	game.height(15)
 	
 	game.addVisual(navePrincipal)
+	game.addVisual(vida)
 	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
@@ -53,10 +54,14 @@ program juego {
 	
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
+		if (navePrincipal.vida() == 1) {
+			game.schedule(4000, {game.stop()})
+			//game.addVisual(moriste.png) --Imagen de game over antes de que se cierre el juego.
+		}
 		game.removeTickEvent(enemigo.nombre())
 		game.removeVisual(enemigo)
 		navePrincipal.perderVida()
-		game.say(navePrincipal, navePrincipal.mostrarVida())
+		//game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
 	
 	game.start()
