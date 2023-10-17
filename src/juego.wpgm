@@ -12,29 +12,32 @@ program juego {
 	game.addVisual(navePrincipal)
 	game.addVisual(vida)
 	
+	const imgEnemigas = ["nave1.png", "nave2.png", "nave3.png", "nave4.png"]
+	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
 	keyboard.space().onPressDo({
-		if (bala.position().y() >= game.height()){
+		if (bala.position().y() >= game.height()) {
 			game.removeVisual(bala)
         	game.removeTickEvent("disparo")
         	bala.position(game.at(navePrincipal.position().x(), 1))
 		}
+		
 		navePrincipal.disparar()
+		
 		game.whenCollideDo(bala, {enemigo => 
 			game.removeVisual(enemigo)
 			game.removeVisual(bala)
 			game.removeTickEvent("disparo")
 		})
+		
 		bala.position(game.at(navePrincipal.position().x(), 1))
-	}) // no se pueden disparar dos balas al mismo tiempo
-	
-	const navesEnemigas = ["nave1.png", "nave2.png", "nave3.png", "nave4.png"]
+	})
 	
 	game.schedule(0, {
-		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = navesEnemigas.anyOne())
-		var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2", imagen = navesEnemigas.anyOne())
-		var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3", imagen = navesEnemigas.anyOne())
+		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = imgEnemigas.anyOne())
+		var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2", imagen = imgEnemigas.anyOne())
+		var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3", imagen = imgEnemigas.anyOne())
 		game.addVisual(naveEnemiga1)
 		game.addVisual(naveEnemiga2)
 		game.addVisual(naveEnemiga3)
@@ -44,8 +47,8 @@ program juego {
 	})
 	
 	game.schedule(10000, {
-		var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4", imagen = navesEnemigas.anyOne())
-		var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5", imagen = navesEnemigas.anyOne())
+		var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4", imagen = imgEnemigas.anyOne())
+		var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5", imagen = imgEnemigas.anyOne())
 		game.addVisual(naveEnemiga4)
 		game.addVisual(naveEnemiga5)
 		game.onTick(201, naveEnemiga4.nombre(), {naveEnemiga4.moverHaciaAbajo()})
@@ -58,10 +61,10 @@ program juego {
 			game.schedule(4000, {game.stop()})
 			//game.addVisual(moriste.png) --Imagen de game over antes de que se cierre el juego.
 		}
+		
 		game.removeTickEvent(enemigo.nombre())
 		game.removeVisual(enemigo)
 		navePrincipal.perderVida()
-		//game.say(navePrincipal, navePrincipal.mostrarVida())
 	})
 	
 	game.start()

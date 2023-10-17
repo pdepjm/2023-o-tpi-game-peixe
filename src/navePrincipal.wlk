@@ -21,18 +21,6 @@ object navePrincipal {
 		vida -= 1
 	}
 	
-	/*method mostrarVida() {
-		if (vida == 2){
-			return "2"
-		} else if (vida == 1){
-			return "1"
-		} else if (vida == 0){
-			return "mori"
-		} else {
-			return "ya estoy muerto flaco"
-		}
-	}*/ 
-	
 	method disparar() {
 		game.addVisual(bala)
 		game.onTick(200, "disparo", { bala.moverHaciaArriba() })
@@ -53,17 +41,19 @@ object bala {
 }
 
 object vida {
+	
 	method position() = game.at(8, 14)
 	
 	method text() {
 		if (navePrincipal.vida() == 3) {
-		return "3/3"
-		}  else if (navePrincipal.vida() == 2) {
-		return "2/3" 
-		}  else if (navePrincipal.vida() == 1) {
-		return "1/3"
+			return "3/3"
+		} else if (navePrincipal.vida() == 2) {
+			return "2/3" 
+		} else if (navePrincipal.vida() == 1) {
+			return "1/3"
 		} else return "0/3"
 	}
 	
 	method textColor() = "FF0000FF" //La vida en rojo
+	
 }
