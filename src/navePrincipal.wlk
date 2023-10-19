@@ -5,6 +5,7 @@ object navePrincipal {
 	var property position = game.at(4,0)
 	var vida = 3
 	
+	//method juegoEjecutandose () = false
 	
 	method image() = "pepita.png"
 	
@@ -22,20 +23,28 @@ object navePrincipal {
 		vida -= 1
 	}
 	
-	method disparar() {
-		game.addVisual(bala)
-		game.onTick(200, "disparo", { bala.moverHaciaArriba() })
-	}
-	
 	method resetear(){
 		vida = 3
 		position = game.at(4,0)
 	}
 	
-	method nuevoDisparar(){
+	method disparar(){
 		game.addVisual(bala)
 		bala.disparse()
+	}
 	
+	method chocarConEnemigo(enemigo){
+		if (self.vida() == 1) {
+			game.schedule(4000, {
+				game.stop()
+				//game.clear()
+				//navePrincipal.juegoEjecutandose() = false
+				//game.addVisual(pantallaInicio)
+			})
+			//game.addVisual(moriste.png) --Imagen de game over.
+		}
+		enemigo.desaparecer()
+		self.perderVida()
 	}
 }
 
