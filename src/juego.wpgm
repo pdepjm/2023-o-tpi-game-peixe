@@ -9,6 +9,12 @@ program juego {
 	game.width(9)
 	game.height(15)
 	
+	//game.addVisual(pantallaInicio)
+	
+	/*keyboard.enter().onPressDo({ 
+	 	game.removeVisual(pantallaInicial)
+	 */
+	
 	game.addVisual(navePrincipal)
 	game.addVisual(vida)
 	
@@ -16,23 +22,7 @@ program juego {
 	
 	keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 	keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
-	keyboard.space().onPressDo({
-		if (bala.position().y() >= game.height()) {
-			game.removeVisual(bala)
-        	game.removeTickEvent("disparo")
-        	bala.position(game.at(navePrincipal.position().x(), 1))
-		}
-		
-		navePrincipal.disparar()
-		
-		game.whenCollideDo(bala, {enemigo => 
-			game.removeVisual(enemigo)
-			game.removeVisual(bala)
-			game.removeTickEvent("disparo")
-		})
-		
-		bala.position(game.at(navePrincipal.position().x(), 1))
-	})
+	keyboard.space().onPressDo({navePrincipal.nuevoDisparar()})
 	
 	game.schedule(0, {
 		var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = imgEnemigas.anyOne())
@@ -58,7 +48,7 @@ program juego {
 	
 	game.whenCollideDo(navePrincipal, {enemigo =>
 		if (navePrincipal.vida() == 1) {
-			game.schedule(4000, {game.stop()})
+			game.schedule(4000, {game.stop()})//{game.addVisual(pantallaInicio) // game.clear()
 			//game.addVisual(moriste.png) --Imagen de game over antes de que se cierre el juego.
 		}
 		
@@ -66,6 +56,10 @@ program juego {
 		game.removeVisual(enemigo)
 		navePrincipal.perderVida()
 	})
+	
+	//}) //Fin de la pantalla de inicio
+	
+	
 	
 	game.start()
 }

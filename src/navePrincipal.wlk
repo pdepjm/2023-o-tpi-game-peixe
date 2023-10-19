@@ -5,6 +5,7 @@ object navePrincipal {
 	var property position = game.at(4,0)
 	var vida = 3
 	
+	
 	method image() = "pepita.png"
 	
 	method moverHaciaDerecha() {
@@ -25,7 +26,17 @@ object navePrincipal {
 		game.addVisual(bala)
 		game.onTick(200, "disparo", { bala.moverHaciaArriba() })
 	}
-
+	
+	method resetear(){
+		vida = 3
+		position = game.at(4,0)
+	}
+	
+	method nuevoDisparar(){
+		game.addVisual(bala)
+		bala.disparse()
+	
+	}
 }
 
 object bala {
@@ -34,8 +45,31 @@ object bala {
 	
 	method image() = "pepita.png"
 	
+	method mePase() = self.position().y() >= game.height()
+	
 	method moverHaciaArriba() {
 		self.position(position.up(1))
+		
+		if (self.mePase()) {
+			self.desaparecer()
+        	self.position(game.at(navePrincipal.position().x(), 1))
+		}
+	}
+	
+	method disparse(){
+		self.position(game.at(navePrincipal.position().x(), 1))
+		
+		game.onTick(200, "disparo", { self.moverHaciaArriba() })
+		
+		game.whenCollideDo(self, {enemigo => 
+			enemigo.chocarConBala()
+			self.desaparecer()
+		})
+	}
+	
+	method desaparecer(){
+		game.removeVisual(self)
+    	game.removeTickEvent("disparo")
 	}
 	
 }

@@ -13,6 +13,11 @@ class NaveInicial {
 		self.position(position.down(1))
 	}
 	
+	
+	method chocarConBala(){
+		
+	}
+	
 	method nombre() = nombre
 	
 }
