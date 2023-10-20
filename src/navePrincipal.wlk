@@ -16,6 +16,7 @@ object navePrincipal {
 	method modifCantBalas(cantidad){
 		cantBalas += cantidad
 	}
+	
 	method recuperarBala(bala) {
 		balas.add(bala)
 	}
