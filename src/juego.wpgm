@@ -16,7 +16,7 @@ program juego {
 	 	//game.removeVisual(pantallaInicial)
 	 	navePrincipal.juegoEjecutandose() = true*/
 	 
-	
+	game.boardGround("fondo.jpg")
 	game.addVisual(navePrincipal)
 	game.addVisual(vida)
 	

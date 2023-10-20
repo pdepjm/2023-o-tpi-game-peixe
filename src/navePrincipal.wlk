@@ -7,7 +7,7 @@ object navePrincipal {
 	
 	//method juegoEjecutandose () = false
 	
-	method image() = "pepita.png"
+	method image() = "nave_aliada.png"
 	
 	method moverHaciaDerecha() {
 		self.position(position.right(1))
@@ -52,7 +52,7 @@ object bala {
 	
 	var property position = game.at(navePrincipal.position().x(), 1)
 	
-	method image() = "pepita.png"
+	method image() = "bala_nave_aliada.png"
 	
 	method mePase() = self.position().y() >= game.height()
 	
