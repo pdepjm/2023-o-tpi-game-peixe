@@ -7,12 +7,17 @@ object navePrincipal {
 	
 	var cantBalas = 0
 	const limiteBalas = 2
+	const balas = ["bala1", "bala2"]
 	
 	var property juegoEjecutandose = false
 	
 	method cantBalas() = cantBalas
+	
 	method modifCantBalas(cantidad){
 		cantBalas += cantidad
+	}
+	method recuperarBala(bala) {
+		balas.add(bala)
 	}
 	
 	method image() = "nave_aliada.png"
@@ -38,7 +43,8 @@ object navePrincipal {
 	
 	method disparar(){
 		if(self.cantBalas() < limiteBalas){
-			const bala = new Bala()
+			const bala = new Bala(nombre = balas.anyOne())
+			balas.remove(bala.nombre())
 			game.addVisual(bala)
 			bala.dispararse()
 			self.modifCantBalas(1)
@@ -62,9 +68,12 @@ object navePrincipal {
 
 class Bala {
 	
+	var nombre
 	var property position = game.at(navePrincipal.position().x(), 1)
 	
 	method image() = "bala_nave_aliada.png"
+	
+	method nombre() = nombre
 	
 	method fueraDelMapa() = self.position().y() >= game.height()
 	
@@ -79,7 +88,7 @@ class Bala {
 	method dispararse(){
 		self.position(game.at(navePrincipal.position().x(), 1))
 		
-		game.onTick(200, "disparo", { self.moverHaciaArriba() })
+		game.onTick(200, self.nombre(), { self.moverHaciaArriba() })
 		
 		game.whenCollideDo(self, {enemigo => 
 			enemigo.chocarConBala()
@@ -89,7 +98,8 @@ class Bala {
 	
 	method desaparecer(){
 		game.removeVisual(self)
-    	game.removeTickEvent("disparo")
+    	game.removeTickEvent(self.nombre())
+    	navePrincipal.recuperarBala(self.nombre())
     	navePrincipal.modifCantBalas(-1)
 	}
 	
