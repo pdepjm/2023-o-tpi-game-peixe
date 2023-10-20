@@ -5,7 +5,15 @@ object navePrincipal {
 	var property position = game.at(4,0)
 	var vida = 3
 	
+	var cantBalas = 0
+	const limiteBalas = 2
+	
 	var property juegoEjecutandose = false
+	
+	method cantBalas() = cantBalas
+	method modifCantBalas(cantidad){
+		cantBalas += cantidad
+	}
 	
 	method image() = "nave_aliada.png"
 	
@@ -29,8 +37,12 @@ object navePrincipal {
 	}
 	
 	method disparar(){
-		game.addVisual(bala)
-		bala.disparse()
+		if(self.cantBalas() < limiteBalas){
+			const bala = new Bala()
+			game.addVisual(bala)
+			bala.dispararse()
+			self.modifCantBalas(1)
+		}
 	}
 	
 	method chocarConEnemigo(enemigo){
@@ -48,24 +60,23 @@ object navePrincipal {
 	}
 }
 
-object bala {
+class Bala {
 	
 	var property position = game.at(navePrincipal.position().x(), 1)
 	
 	method image() = "bala_nave_aliada.png"
 	
-	method mePase() = self.position().y() >= game.height()
+	method fueraDelMapa() = self.position().y() >= game.height()
 	
 	method moverHaciaArriba() {
 		self.position(position.up(1))
-		
-		if (self.mePase()) {
+		if (self.fueraDelMapa()) {
 			self.desaparecer()
         	self.position(game.at(navePrincipal.position().x(), 1))
 		}
 	}
 	
-	method disparse(){
+	method dispararse(){
 		self.position(game.at(navePrincipal.position().x(), 1))
 		
 		game.onTick(200, "disparo", { self.moverHaciaArriba() })
@@ -79,6 +90,7 @@ object bala {
 	method desaparecer(){
 		game.removeVisual(self)
     	game.removeTickEvent("disparo")
+    	navePrincipal.modifCantBalas(-1)
 	}
 	
 }
