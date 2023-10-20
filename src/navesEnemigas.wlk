@@ -7,7 +7,7 @@ class NaveInicial {
 	
 	var imagen
 	
-	//var vida
+	var vidaEnemigo
 	
 	method image() = imagen
 	
@@ -17,8 +17,7 @@ class NaveInicial {
 	
 	
 	method chocarConBala(){
-		self.desaparecer()
-		//if (vida == 0) self.desaparecer() else vida-=1
+		if (vidaEnemigo == 1) self.desaparecer() else vidaEnemigo-=1
 	}
 
 	method desaparecer(){

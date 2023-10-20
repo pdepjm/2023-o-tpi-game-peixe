@@ -27,9 +27,9 @@ program juego {
 		keyboard.space().onPressDo({navePrincipal.disparar()})
 	
 		game.schedule(0, {
-			var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = imgEnemigas.anyOne())
-			var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2", imagen = imgEnemigas.anyOne())
-			var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3", imagen = imgEnemigas.anyOne())
+			var naveEnemiga1 = new NaveInicial(position=game.at(2,game.height()), nombre = "naveEnemiga1", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+			var naveEnemiga2 = new NaveInicial(position=game.at(4,game.height()), nombre = "naveEnemiga2", imagen = imgEnemigas.anyOne(), vidaEnemigo = 2)
+			var naveEnemiga3 = new NaveInicial(position=game.at(6,game.height()), nombre = "naveEnemiga3", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
 			game.addVisual(naveEnemiga1)
 			game.addVisual(naveEnemiga2)
 			game.addVisual(naveEnemiga3)
@@ -39,8 +39,8 @@ program juego {
 		})
 	
 		game.schedule(10000, {
-			var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4", imagen = imgEnemigas.anyOne())
-			var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5", imagen = imgEnemigas.anyOne())
+			var naveEnemiga4 = new NaveInicial(position=game.at(1,game.height()), nombre = "naveEnemiga4", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+			var naveEnemiga5 = new NaveInicial(position=game.at(7,game.height()), nombre = "naveEnemiga5", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
 			game.addVisual(naveEnemiga4)
 			game.addVisual(naveEnemiga5)
 			game.onTick(201, naveEnemiga4.nombre(), {naveEnemiga4.moverHaciaAbajo()})
