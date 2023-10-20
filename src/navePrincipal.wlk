@@ -5,7 +5,7 @@ object navePrincipal {
 	var property position = game.at(4,0)
 	var vida = 3
 	
-	//method juegoEjecutandose () = false
+	var property juegoEjecutandose = false
 	
 	method image() = "nave_aliada.png"
 	
@@ -36,10 +36,10 @@ object navePrincipal {
 	method chocarConEnemigo(enemigo){
 		if (self.vida() == 1) {
 			game.schedule(4000, {
-				game.stop()
-				//game.clear()
-				//navePrincipal.juegoEjecutandose() = false
-				//game.addVisual(pantallaInicio)
+				//game.stop()
+				game.clear()
+				self.juegoEjecutandose(false)
+				game.addVisual(inicio)
 			})
 			//game.addVisual(moriste.png) --Imagen de game over.
 		}
@@ -99,4 +99,13 @@ object vida {
 	
 	method textColor() = "FF0000FF" //La vida en rojo
 	
+}
+
+object inicio {
+	
+	method position() = game.center()
+	
+	method text() = "Presiona ENTER para iniciar"
+	
+	method textColor() = "FFFFFFFF"
 }
