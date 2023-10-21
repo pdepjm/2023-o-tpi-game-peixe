@@ -1,4 +1,5 @@
 import wollok.game.*
+import navePrincipal.*
 
 class NaveInicial {
 	
@@ -11,10 +12,14 @@ class NaveInicial {
 	
 	method image() = imagen
 	
+	method fueraDelMapa() = self.position().y() <= -1
+	
 	method moverHaciaAbajo() {
 		self.position(position.down(1))
+		if (self.fueraDelMapa()) {
+			navePrincipal.chocarConEnemigo(self)
+		}
 	}
-	
 	
 	method chocarConBala(){
 		if (vidaEnemigo == 1) self.desaparecer() else vidaEnemigo-=1
