@@ -7,6 +7,7 @@ object navePrincipal {
 	
 	var cantBalas = 0
 	var limiteBalas = 2
+	var puedoDisparar = true
 	const balas = ["bala1", "bala2", "bala3", "bala4"]
 	
 	var property juegoEjecutandose = false
@@ -34,12 +35,14 @@ object navePrincipal {
 	
 	//Disparar
 	method disparar(){
-		if(self.cantBalas() < limiteBalas){
+		if(self.cantBalas() < limiteBalas && puedoDisparar){
 			const bala = new Bala(nombre = balas.anyOne())
 			balas.remove(bala.nombre())
 			game.addVisual(bala)
 			bala.dispararse()
 			self.modifCantBalas(1)
+			puedoDisparar = false
+			game.schedule(201, {puedoDisparar = true})
 		}
 	}
 	
@@ -132,7 +135,7 @@ class Bala {
 
         game.whenCollideDo(self, {enemigo => 
             enemigo.chocarConBala()
-            if (enemigo.image() != "bala_nave_aliada.png") self.desaparecer()
+            self.desaparecer()
         })
     }
 
@@ -144,7 +147,7 @@ class Bala {
         navePrincipal.modifCantBalas(-1)
     }
 
-    method chocarConBala () {}
+    method chocarConBala () {} //En caso de que una bala choque con otra
 
 }
 
@@ -163,6 +166,8 @@ object vida {
 	}
 	
 	method textColor() = "FF0000FF" //La vida en rojo
+	
+	method chocarConBala () {} //En caso de que una bala choque con el texto
 	
 }
 

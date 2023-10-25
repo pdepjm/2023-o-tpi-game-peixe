@@ -8,16 +8,28 @@ class Modificador{
 
     var property position = game.at(positionsX.anyOne(), positionsY.anyOne())
     
+    var estaEnPantalla = false
+    
     //var imagen
 
 	//Imagen
     method image() = "pepita.png" // imagen
 
+	//Esta el modificador en pantalla
+	method estaEnPantalla() = estaEnPantalla
+
+	//Aparecer
+	method aparecer(){
+		game.addVisual(self)
+		estaEnPantalla = true
+	}
+	
 	//Desaparecer
     method desaparecer(){
         game.removeVisual(self)
+        estaEnPantalla = false
+        
     }
-
 }
 
 //Buff
