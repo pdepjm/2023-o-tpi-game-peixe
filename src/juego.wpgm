@@ -70,13 +70,12 @@ program juego {
 			})
 			
 			//PowerUps
-			const powerUps = [{
-				game.addVisual(duplicarBala)
-				game.schedule(3000, {duplicarBala.desaparecer()})
-			}]
+			const powerUps = [duplicarBala]
 			
-			game.onTick(5000, "spawnPowerUp", {
-				powerUps.anyOne().apply()
+			game.onTick(5000, "spawn power up", {
+				var powerUp = powerUps.anyOne()
+				game.addVisual(powerUp)
+				game.schedule(3000, {powerUp.desaparecer()})
 			})
 			
 			game.whenCollideDo(navePrincipal, {enemigo => navePrincipal.chocarConEnemigo(enemigo)})
