@@ -1,7 +1,7 @@
 import wollok.game.*
 import navePrincipal.*
 
-class NaveInicial {
+class NaveEnemiga {
 	
 	var property position
 	var nombre

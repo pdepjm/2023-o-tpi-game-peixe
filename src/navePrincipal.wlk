@@ -6,7 +6,7 @@ object navePrincipal {
 	var vida = 3
 	
 	var cantBalas = 0
-	const limiteBalas = 2
+	var limiteBalas = 1
 	const balas = ["bala1", "bala2"]
 	
 	var property juegoEjecutandose = false
@@ -65,45 +65,54 @@ object navePrincipal {
 		enemigo.desaparecer()
 		self.perderVida()
 	}
+	
+	method duplicarBalas(){
+		limiteBalas *= 2
+		game.schedule(5000, {
+			limiteBalas /= 2
+		})
+	}
 }
 
 class Bala {
-	
-	var nombre
-	var property position = game.at(navePrincipal.position().x(), 1)
-	
-	method image() = "bala_nave_aliada.png"
-	
-	method nombre() = nombre
-	
-	method fueraDelMapa() = self.position().y() >= game.height()
-	
-	method moverHaciaArriba() {
-		self.position(position.up(1))
-		if (self.fueraDelMapa()) {
-			self.desaparecer()
-        	self.position(game.at(navePrincipal.position().x(), 1))
-		}
-	}
-	
-	method dispararse(){
-		self.position(game.at(navePrincipal.position().x(), 1))
-		
-		game.onTick(200, self.nombre(), { self.moverHaciaArriba() })
-		
-		game.whenCollideDo(self, {enemigo => 
-			enemigo.chocarConBala()
-			self.desaparecer()
-		})
-	}
-	
-	method desaparecer(){
-		game.removeVisual(self)
-    	game.removeTickEvent(self.nombre())
-    	navePrincipal.recuperarBala(self.nombre())
-    	navePrincipal.modifCantBalas(-1)
-	}
-	
+
+    var nombre
+    var property position = game.at(navePrincipal.position().x(), 1)
+
+    method image() = "bala_nave_aliada.png"
+
+    method nombre() = nombre
+
+    method fueraDelMapa() = self.position().y() >= game.height()
+
+    method moverHaciaArriba() {
+        self.position(position.up(1))
+        if (self.fueraDelMapa()) {
+            self.desaparecer()
+            self.position(game.at(navePrincipal.position().x(), 1))
+        }
+    }
+
+    method dispararse(){
+        self.position(game.at(navePrincipal.position().x(), 1))
+
+        game.onTick(200, self.nombre(), { self.moverHaciaArriba() })
+
+        game.whenCollideDo(self, {enemigo => 
+            enemigo.chocarConBala()
+            if (enemigo.image() != "bala_nave_aliada.png") self.desaparecer()
+        })
+    }
+
+    method desaparecer(){
+        game.removeVisual(self)
+        game.removeTickEvent(self.nombre())
+        navePrincipal.recuperarBala(self.nombre())
+        navePrincipal.modifCantBalas(-1)
+    }
+
+    method chocarConBala () {}
+
 }
 
 object vida {
