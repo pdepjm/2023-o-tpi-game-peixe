@@ -71,14 +71,14 @@ program juego {
 			
 			//PowerUps
 			const powerUps = [{
-				var dobleBala = new DobleBala()
-				game.addVisual(dobleBala)
+				game.addVisual(duplicarBala)
+				game.schedule(3000, {duplicarBala.desaparecer()})
 			}]
 			
-			game.onTick(5000, "bala", {
+			game.onTick(5000, "spawnPowerUp", {
 				powerUps.anyOne().apply()
 			})
-	
+			
 			game.whenCollideDo(navePrincipal, {enemigo => navePrincipal.chocarConEnemigo(enemigo)})
 			
 		}	//Fin del if

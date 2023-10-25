@@ -6,7 +6,7 @@ object navePrincipal {
 	var vida = 3
 	
 	var cantBalas = 0
-	var limiteBalas = 1
+	var limiteBalas = 2
 	const balas = ["bala1", "bala2"]
 	
 	var property juegoEjecutandose = false
