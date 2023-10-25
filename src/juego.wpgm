@@ -70,7 +70,7 @@ program juego {
 			})
 			
 			//PowerUps
-			const powerUps = [duplicarBala]
+			const powerUps = [duplicarBalas]
 			
 			game.onTick(5000, "spawn power up", {
 				var powerUp = powerUps.anyOne()
