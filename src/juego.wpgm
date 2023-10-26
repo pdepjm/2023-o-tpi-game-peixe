@@ -21,7 +21,7 @@ program juego {
 			game.addVisual(navePrincipal)
 			game.addVisual(vida)
 	
-			const imgEnemigas = ["nave1.png", "nave2.png", "nave3.png", "nave4.png"]
+			const imgEnemigas = ["naveEnemiga1.png", "naveEnemiga2.png", "naveEnemiga3.png", "naveEnemiga4.png"]
 		
 			keyboard.right().onPressDo({navePrincipal.moverHaciaDerecha()})
 			keyboard.left().onPressDo({navePrincipal.moverHaciaIzquierda()})
@@ -56,11 +56,11 @@ program juego {
 			
 			//Naves Medianas
 			const navesMedianas = [{
-				var naveMediana1 = new NaveEnemiga(position=game.at(2,game.height()), nombre = "naveMediana1", imagen = "nave_aliada.png", vidaEnemigo = 2)
+				var naveMediana1 = new NaveEnemiga(position=game.at(2,game.height()), nombre = "naveMediana1", imagen = "naveMediana.png", vidaEnemigo = 2)
 				game.addVisual(naveMediana1)
 				game.onTick(501, naveMediana1.nombre(), {naveMediana1.moverHaciaAbajo()})
 			}, {
-				var naveMediana2 = new NaveEnemiga(position=game.at(4,game.height()), nombre = "naveMediana2", imagen = "nave_aliada.png", vidaEnemigo = 2)
+				var naveMediana2 = new NaveEnemiga(position=game.at(4,game.height()), nombre = "naveMediana2", imagen = "naveMediana.png", vidaEnemigo = 2)
 				game.addVisual(naveMediana2)
 				game.onTick(401, naveMediana2.nombre(), {naveMediana2.moverHaciaAbajo()})
 			}]
@@ -72,10 +72,12 @@ program juego {
 			//PowerUps
 			const modificadores = [duplicarBalas, recuperarVida, reducirBalas, inmovilizar]
 			
-			game.onTick(8000, "spawn power up", {
+			game.onTick(2000, "spawn power up", {
 				var modificador = modificadores.anyOne()
 				modificador.aparecer()
-				game.schedule(5000, {if (not modificador.estaEnPantalla()) modificador.desaparecer()})
+				game.schedule(1000, {
+					if (modificador.estaEnPantalla()) modificador.desaparecer()
+				})
 			})
 			
 			game.whenCollideDo(navePrincipal, {enemigo => navePrincipal.chocarConEnemigo(enemigo)})

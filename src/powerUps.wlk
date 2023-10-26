@@ -10,10 +10,10 @@ class Modificador{
     
     var estaEnPantalla = false
     
-    //var imagen
+    var imagen
 
 	//Imagen
-    method image() = "pepita.png" // imagen
+    method image() = imagen
 
 	//Esta el modificador en pantalla
 	method estaEnPantalla() = estaEnPantalla
@@ -28,12 +28,11 @@ class Modificador{
     method desaparecer(){
         game.removeVisual(self)
         estaEnPantalla = false
-        
     }
 }
 
 //Buff
-object duplicarBalas inherits Modificador{
+object duplicarBalas inherits Modificador(imagen = "duplicadorBalas.png"){
 	
 	method chocarConBala(){
         navePrincipal.duplicarBalas()
@@ -42,7 +41,7 @@ object duplicarBalas inherits Modificador{
 	
 }
 
-object recuperarVida inherits Modificador{
+object recuperarVida inherits Modificador(imagen = "recuperadorVida.png"){
 	
 	method chocarConBala(){
         navePrincipal.recuperarVida()
@@ -52,7 +51,7 @@ object recuperarVida inherits Modificador{
 }
 
 //Debuff
-object reducirBalas inherits Modificador{
+object reducirBalas inherits Modificador(imagen = "reductorBalas.png"){
 	
 	method chocarConBala(){
         navePrincipal.reducirBalas()
@@ -61,7 +60,7 @@ object reducirBalas inherits Modificador{
 	
 }
 
-object inmovilizar inherits Modificador{
+object inmovilizar inherits Modificador(imagen = "naveAliada.png"){
 	
 	method chocarConBala(){
         navePrincipal.inmovilizar()

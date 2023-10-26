@@ -15,7 +15,7 @@ object navePrincipal {
 	var puedeMoverse = true
 	
 	//Imagen
-	method image() = "nave_aliada.png"
+	method image() = "naveAliada.png"
 		
 	//Movimiento
 	method moverHaciaDerecha() {
@@ -111,7 +111,7 @@ class Bala {
     var property position = game.at(navePrincipal.position().x(), 1)
 
 	//Imagen
-    method image() = "bala_nave_aliada.png"
+    method image() = "bala.png"
 
 	//Nombre
     method nombre() = nombre
@@ -167,7 +167,7 @@ object vida {
 	
 	method textColor() = "FF0000FF" //La vida en rojo
 	
-	method chocarConBala () {} //En caso de que una bala choque con el texto
+	method chocarConBala() {} //En caso de que una bala choque con el texto
 	
 }
 
