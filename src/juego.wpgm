@@ -72,10 +72,10 @@ program juego {
 			//PowerUps
 			const modificadores = [duplicarBalas, recuperarVida, reducirBalas, inmovilizar]
 			
-			game.onTick(2000, "spawn power up", {
+			game.onTick(8000, "spawn power up", {
 				var modificador = modificadores.anyOne()
 				modificador.aparecer()
-				game.schedule(1000, {
+				game.schedule(5000, {
 					if (modificador.estaEnPantalla()) modificador.desaparecer()
 				})
 			})
