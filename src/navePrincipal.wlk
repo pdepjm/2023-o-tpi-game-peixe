@@ -60,12 +60,10 @@ object navePrincipal {
 	method chocarConEnemigo(enemigo){
 		if (self.vida() == 1) {
 			game.schedule(4000, {
-				//game.stop()
 				game.clear()
 				self.juegoEjecutandose(false)
 				game.addVisual(inicio)
 			})
-			//game.addVisual(moriste.png) --Imagen de game over.
 		}
 		enemigo.desaparecer()
 		self.perderVida()
@@ -147,7 +145,7 @@ class Bala {
         navePrincipal.modifCantBalas(-1)
     }
 
-    method chocarConBala () {} //En caso de que una bala choque con otra
+    method chocarConBala() {} //En caso de que una bala choque con otra
 
 }
 
