@@ -3,7 +3,7 @@ import controladores.*
 
 object navePrincipal {
 
-	var property position = game.at(4,0)
+	var property position = game.at(game.center().x(),0)
 	var vida = 3
 	
 	var cantBalas = 0
