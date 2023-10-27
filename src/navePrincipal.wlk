@@ -1,4 +1,5 @@
 import wollok.game.*
+import controladores.*
 
 object navePrincipal {
 
@@ -58,15 +59,14 @@ object navePrincipal {
 	
 	//Chocar con enemigo
 	method chocarConEnemigo(enemigo){
-		if (self.vida() == 1) {
-			game.schedule(4000, {
-				game.clear()
-				self.juegoEjecutandose(false)
-				game.addVisual(inicio)
-			})
-		}
 		enemigo.desaparecer()
 		self.perderVida()
+		if (self.vida() == 0) {
+			game.clear()
+			self.juegoEjecutandose(false)
+			game.addVisual(cartelInicio)
+			reiniciador.reiniciar()
+		}
 	}
 	
 	// PowerUps
@@ -167,13 +167,4 @@ object vida {
 	
 	method chocarConBala() {} //En caso de que una bala choque con el texto
 	
-}
-
-object inicio {
-	
-	method position() = game.center()
-	
-	method text() = "Presiona ENTER para iniciar"
-	
-	method textColor() = "FFFFFFFF"
 }
