@@ -7,11 +7,9 @@ object navePrincipal {
 	var vida = 3
 	
 	var cantBalas = 0
-	var limiteBalas = 2
+	var limiteBalas = 3
 	var puedoDisparar = true
-	const balas = ["bala1", "bala2", "bala3", "bala4"]
-	
-	var property juegoEjecutandose = false
+	const balas = ["bala1", "bala2", "bala3", "bala4", "bala5", "bala6"]
 	
 	var puedeMoverse = true
 	
@@ -63,9 +61,11 @@ object navePrincipal {
 		self.perderVida()
 		if (self.vida() == 0) {
 			game.clear()
-			self.juegoEjecutandose(false)
-			game.addVisual(cartelInicio)
-			reiniciador.reiniciar()
+			game.addVisual(gameOver)
+			game.schedule(4000, {
+				iniciador.juegoEjecutandose(false)
+				iniciador.reiniciar()
+			})
 		}
 	}
 	
@@ -107,6 +107,8 @@ class Bala {
 
     var nombre
     var property position = game.at(navePrincipal.position().x(), 1)
+    
+    var enPantalla = false
 
 	//Imagen
     method image() = "bala.png"
@@ -127,6 +129,7 @@ class Bala {
 
 	//Dispararse
     method dispararse(){
+    	enPantalla = true
         self.position(game.at(navePrincipal.position().x(), 1))
 
         game.onTick(200, self.nombre(), { self.moverHaciaArriba() })
@@ -139,14 +142,19 @@ class Bala {
 
 	//Chocar
     method desaparecer(){
-        game.removeVisual(self)
-        game.removeTickEvent(self.nombre())
-        navePrincipal.recuperarBala(self.nombre())
-        navePrincipal.modifCantBalas(-1)
+    	if (self.enPantalla()){
+        	game.removeVisual(self)
+        	game.removeTickEvent(self.nombre())
+        	navePrincipal.recuperarBala(self.nombre())
+        	navePrincipal.modifCantBalas(-1)
+        	enPantalla = false
+        }
     }
 
     method chocarConBala() {} //En caso de que una bala choque con otra
-
+    
+    method enPantalla() = enPantalla // Me permite realizar un control si la bala tiene que desaparecer 2 veces en caso
+									//de que tenga dos enemigos que se crucen, y la bala colisione con ambos
 }
 
 object vida {
