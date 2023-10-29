@@ -60,7 +60,7 @@ object reducirBalas inherits Modificador(imagen = "reductorBalas.png"){
 	
 }
 
-object inmovilizar inherits Modificador(imagen = "naveAliada.png"){
+object inmovilizar inherits Modificador(imagen = "inmovilizador.png"){
 	
 	method chocarConBala(){
         navePrincipal.inmovilizar()
