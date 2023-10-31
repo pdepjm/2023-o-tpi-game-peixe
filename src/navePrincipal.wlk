@@ -100,6 +100,7 @@ object navePrincipal {
 	method resetear(){
 		vida = 3
 		position = game.at(4,0)
+		limiteBalas = 2
 	}
 }
 
