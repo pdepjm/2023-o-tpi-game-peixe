@@ -26,23 +26,23 @@ object iniciador{
 
 				//Naves Chiquitas
 				const navesChiquitas = [{
-					const naveChiquita1 = new NaveEnemiga(position=game.at(2,game.height()), nombre = "naveChiquita1", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+					const naveChiquita1 = new NaveChiquita(position=game.at(2,game.height()), nombre = "naveChiquita1", imagen = imgEnemigas.anyOne())
 					game.addVisual(naveChiquita1)
 					game.onTick(501, naveChiquita1.nombre(), {naveChiquita1.moverHaciaAbajo()})
 				}, {
-					const naveChiquita2 = new NaveEnemiga(position=game.at(4,game.height()), nombre = "naveChiquita2", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+					const naveChiquita2 = new NaveChiquita(position=game.at(4,game.height()), nombre = "naveChiquita2", imagen = imgEnemigas.anyOne())
 					game.addVisual(naveChiquita2)
 					game.onTick(401, naveChiquita2.nombre(), {naveChiquita2.moverHaciaAbajo()})
 				}, {
-					const naveChiquita3 = new NaveEnemiga(position=game.at(6,game.height()), nombre = "naveChiquita3", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+					const naveChiquita3 = new NaveChiquita(position=game.at(6,game.height()), nombre = "naveChiquita3", imagen = imgEnemigas.anyOne())
 					game.addVisual(naveChiquita3)
 					game.onTick(601, naveChiquita3.nombre(), {naveChiquita3.moverHaciaAbajo()})
 				}, {
-					const naveChiquita4 = new NaveEnemiga(position=game.at(1,game.height()), nombre = "naveChiquita4", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+					const naveChiquita4 = new NaveChiquita(position=game.at(1,game.height()), nombre = "naveChiquita4", imagen = imgEnemigas.anyOne())
 					game.addVisual(naveChiquita4)
 					game.onTick(201, naveChiquita4.nombre(), {naveChiquita4.moverHaciaAbajo()})
 				}, {
-					const naveChiquita5 = new NaveEnemiga(position=game.at(7,game.height()), nombre = "naveChiquita5", imagen = imgEnemigas.anyOne(), vidaEnemigo = 1)
+					const naveChiquita5 = new NaveChiquita(position=game.at(7,game.height()), nombre = "naveChiquita5", imagen = imgEnemigas.anyOne())
 					game.addVisual(naveChiquita5)
 					game.onTick(301, naveChiquita5.nombre(), {naveChiquita5.moverHaciaAbajo()})
 				}]
@@ -53,11 +53,11 @@ object iniciador{
 					
 				//Naves Medianas
 				const navesMedianas = [{
-					const naveMediana1 = new NaveEnemiga(position=game.at(2,game.height()), nombre = "naveMediana1", imagen = "naveMediana.png", vidaEnemigo = 2)
+					const naveMediana1 = new NaveMediana(position=game.at(2,game.height()), nombre = "naveMediana1")
 					game.addVisual(naveMediana1)
 					game.onTick(501, naveMediana1.nombre(), {naveMediana1.moverHaciaAbajo()})
 				}, {
-					const naveMediana2 = new NaveEnemiga(position=game.at(4,game.height()), nombre = "naveMediana2", imagen = "naveMediana.png", vidaEnemigo = 2)
+					const naveMediana2 = new NaveMediana(position=game.at(4,game.height()), nombre = "naveMediana2")
 					game.addVisual(naveMediana2)
 					game.onTick(401, naveMediana2.nombre(), {naveMediana2.moverHaciaAbajo()})
 				}]

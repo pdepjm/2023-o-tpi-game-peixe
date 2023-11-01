@@ -36,3 +36,7 @@ class NaveEnemiga {
     	game.removeTickEvent(self.nombre())
 	} 
 }
+
+class NaveChiquita inherits NaveEnemiga(vidaEnemigo = 1){}
+
+class NaveMediana inherits NaveEnemiga(vidaEnemigo = 2, imagen = "naveMediana.png"){}
