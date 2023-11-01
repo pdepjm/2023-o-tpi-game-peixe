@@ -100,12 +100,13 @@ object navePrincipal {
 	
 	//Resetear nave
 	method resetear(){
-		position = game.at(game.center().x(),0)
-		vida = 3
-		limiteBalas = 4
-		puedeMoverse = true
-		puedoDisparar = true
-	}
+        position = game.at(game.center().x(),0)
+        vida = 3
+        limiteBalas = 4
+        puedeMoverse = true
+        puedoDisparar = true
+        score.resetear()
+    }
 }
 
 class Bala {
@@ -181,4 +182,26 @@ object vida {
 	
 	method chocarConBala() {} //En caso de que una bala choque con el texto
 	
+}
+
+object score {
+
+    var score = 0
+
+    method position() = game.at(0, 14)
+
+    method agregar(puntaje){
+        score += puntaje
+    }
+
+    method resetear(){
+        score = 0
+    }
+
+    method text() = score.toString()
+
+    method textColor() = "FFFFFFFF"
+
+    method chocarConBala(){}
+
 }

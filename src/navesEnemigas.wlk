@@ -7,6 +7,8 @@ class NaveEnemiga {
 	const positionsX = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     var property position = game.at(positionsX.anyOne(), game.height())
     
+    var puntaje
+    
 	var nombre
 	
 	var imagen
@@ -31,20 +33,22 @@ class NaveEnemiga {
 	
 	//Chocar
 	method chocarConBala(){
-		if (vidaEnemigo == 1){
-			self.desaparecer()
-			enemigoEliminado.play()
-		}  else vidaEnemigo-=1
-	}
+        if (vidaEnemigo == 1){
+            self.desaparecer()
+            score.agregar(puntaje)
+            enemigoEliminado.play()
+        }  else vidaEnemigo-=1
+    }
 
 	method desaparecer(){
 		game.removeVisual(self)
     	game.removeTickEvent(self.nombre())
 	} 
+
 }
 
-class NaveChiquita inherits NaveEnemiga(vidaEnemigo = 1){}
+class NaveChiquita inherits NaveEnemiga(vidaEnemigo = 1, puntaje = 100){}
 
-class NaveMediana inherits NaveEnemiga(vidaEnemigo = 2, imagen = "naveMediana.png"){}
+class NaveMediana inherits NaveEnemiga(vidaEnemigo = 2, imagen = "naveMediana.png", puntaje = 250){}
 
-class NaveGrande inherits NaveEnemiga(vidaEnemigo = 3, imagen = "naveGrande.png"){}
+class NaveGrande inherits NaveEnemiga(vidaEnemigo = 3, imagen = "naveGrande.png", puntaje = 500){}
