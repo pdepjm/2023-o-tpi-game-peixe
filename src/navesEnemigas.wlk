@@ -40,3 +40,5 @@ class NaveEnemiga {
 class NaveChiquita inherits NaveEnemiga(vidaEnemigo = 1){}
 
 class NaveMediana inherits NaveEnemiga(vidaEnemigo = 2, imagen = "naveMediana.png"){}
+
+class NaveGrande inherits NaveEnemiga(vidaEnemigo = 3, imagen = "naveGrande.png"){}
