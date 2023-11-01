@@ -18,6 +18,7 @@ object iniciador{
 	 			
 				game.addVisual(navePrincipal)
 				game.addVisual(vida)
+				game.addVisual(score)
 	
 				const imgEnemigas = ["naveEnemiga1.png", "naveEnemiga2.png", "naveEnemiga3.png", "naveEnemiga4.png"]
 		
