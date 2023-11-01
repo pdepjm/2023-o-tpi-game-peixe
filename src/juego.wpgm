@@ -1,10 +1,9 @@
 import wollok.game.*
 import controladores.*
-import navePrincipal.*
 
-program juego {
+program WollokSpaceWar {
 	
-	game.title("The Imposible 'Navecita' Game")
+	game.title("Wollok Space War")
 	
 	game.width(9)
 	game.height(15)
@@ -12,6 +11,8 @@ program juego {
 	game.boardGround("fondo.jpg")
 	
 	iniciador.iniciar()
+	musicaFondo.iniciar()
 	
 	game.start()
+	
 }

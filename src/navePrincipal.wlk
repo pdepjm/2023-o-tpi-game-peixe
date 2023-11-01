@@ -1,5 +1,6 @@
 import wollok.game.*
 import controladores.*
+import sonidos.*
 
 object navePrincipal {
 
@@ -17,11 +18,11 @@ object navePrincipal {
 		
 	//Movimiento
 	method moverHaciaDerecha() {
-		if (puedeMoverse) self.position(position.right(1))
+		if (puedeMoverse && self.position().x() < 8) self.position(position.right(1))
 	}
 	
 	method moverHaciaIzquierda() {
-		if (puedeMoverse) self.position(position.left(1))
+		if (puedeMoverse && self.position().x() > 0) self.position(position.left(1))
 	}
 	
 	//Vida
@@ -61,6 +62,8 @@ object navePrincipal {
 		if (self.vida() == 0) {
 			game.clear()
 			game.addVisual(gameOver)
+			gameover.play()
+			musicaFondo.pausar()
 			game.schedule(4000, {
 				iniciador.juegoEjecutandose(false)
 				iniciador.reiniciar()
@@ -132,6 +135,7 @@ class Bala {
 	//Dispararse
     method dispararse(){
     	enPantalla = true
+    	disparo.play()
         self.position(game.at(navePrincipal.position().x(), 1))
 
         game.onTick(200, self.nombre(), { self.moverHaciaArriba() })

@@ -4,8 +4,8 @@ import sonidos.*
 
 class Modificador{
 
-	const positionsX = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-	const positionsY = [7, 8, 9, 10, 11, 12, 13, 14, 15]
+	const positionsX = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+	const positionsY = [5, 6, 7, 8, 9, 10, 11, 12]
 
     var property position = game.at(positionsX.anyOne(), positionsY.anyOne())
     
@@ -25,40 +25,43 @@ class Modificador{
 		estaEnPantalla = true
 	}
 	
+	method desaparecer(){
+		game.removeVisual(self)
+        estaEnPantalla = false
+	}
+	
 }
 
 class PowerUp inherits Modificador{
 	
-	method desaparecer(){
-		game.removeVisual(self)
-        estaEnPantalla = false
+	method chocarConBala(){
+        self.desaparecer()
         powerup.play()
-	}
+    }
 }
 
 class PowerDown inherits Modificador{
 	
-	method desaparecer(){
-		game.removeVisual(self)
-        estaEnPantalla = false
+	method chocarConBala(){
+        self.desaparecer()
         powerdown.play()
-	}
+    }
 }
 
 //Buff
 object duplicarBalas inherits PowerUp(imagen = "duplicadorBalas.png"){
 	
-	method chocarConBala(){
+	override method chocarConBala(){
         navePrincipal.duplicarBalas()
-        self.desaparecer()
+        super()
     }
 }
 
 object recuperarVida inherits PowerUp(imagen = "recuperadorVida.png"){
 	
-	method chocarConBala(){
+	override method chocarConBala(){
         navePrincipal.recuperarVida()
-        self.desaparecer()
+        super()
     }
 	
 }
@@ -66,18 +69,18 @@ object recuperarVida inherits PowerUp(imagen = "recuperadorVida.png"){
 //Debuff
 object reducirBalas inherits PowerDown(imagen = "reductorBalas.png"){
 	
-	method chocarConBala(){
+	override method chocarConBala(){
         navePrincipal.reducirBalas()
-        self.desaparecer()
+        super()
     }
 	
 }
 
 object inmovilizar inherits PowerDown(imagen = "inmovilizador.png"){
 	
-	method chocarConBala(){
+	override method chocarConBala(){
         navePrincipal.inmovilizar()
-        self.desaparecer()
+        super()
     }
 	
 }

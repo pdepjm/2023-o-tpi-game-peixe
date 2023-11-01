@@ -12,11 +12,11 @@ class Sonido{
 	}
 }
 
-object sonidofondo inherits Sonido(sonido = "sonidofondo.mp3"){}
-
 object disparo inherits Sonido(sonido = "disparo.mp3"){}
 
 object powerup inherits Sonido(sonido = "powerup.mp3"){}
+
+object powerdown inherits Sonido(sonido = "powerdown.wav"){}
 
 object gameover inherits Sonido(sonido = "gameover.mp3"){}
 

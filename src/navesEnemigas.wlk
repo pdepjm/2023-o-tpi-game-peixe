@@ -4,7 +4,9 @@ import sonidos.*
 
 class NaveEnemiga {
 	
-	var property position
+	const positionsX = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    var property position = game.at(positionsX.anyOne(), game.height())
+    
 	var nombre
 	
 	var imagen
