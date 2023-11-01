@@ -7,11 +7,10 @@ object navePrincipal {
 	var vida = 3
 	
 	var cantBalas = 0
-	var limiteBalas = 3
+	var limiteBalas = 4
 	var puedoDisparar = true
-	const balas = ["bala1", "bala2", "bala3", "bala4", "bala5", "bala6"]
-	
 	var puedeMoverse = true
+	const balas = ["bala1", "bala2", "bala3", "bala4", "bala5", "bala6", "bala7", "bala8"]
 	
 	//Imagen
 	method image() = "naveAliada.png"
@@ -98,9 +97,11 @@ object navePrincipal {
 	
 	//Resetear nave
 	method resetear(){
+		position = game.at(game.center().x(),0)
 		vida = 3
-		position = game.at(4,0)
-		limiteBalas = 2
+		limiteBalas = 4
+		puedeMoverse = true
+		puedoDisparar = true
 	}
 }
 

@@ -1,5 +1,6 @@
 import wollok.game.*
 import navePrincipal.*
+import sonidos.*
 
 class NaveEnemiga {
 	
@@ -34,6 +35,7 @@ class NaveEnemiga {
 	method desaparecer(){
 		game.removeVisual(self)
     	game.removeTickEvent(self.nombre())
+    	enemigoEliminado.play()
 	} 
 }
 

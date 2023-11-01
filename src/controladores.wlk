@@ -15,6 +15,10 @@ object iniciador{
 	 			self.juegoEjecutandose(true)
 	 			game.removeVisual(cartelInicio)
 	 			
+	 			const musiquita = game.sound("sonidofondo.mp3")
+				musiquita.shouldLoop(true)
+				musiquita.play()
+	 			
 				game.addVisual(navePrincipal)
 				game.addVisual(vida)
 	

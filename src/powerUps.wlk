@@ -1,5 +1,6 @@
 import wollok.game.*
 import navePrincipal.*
+import sonidos.*
 
 class Modificador{
 
@@ -24,24 +25,36 @@ class Modificador{
 		estaEnPantalla = true
 	}
 	
-	//Desaparecer
-    method desaparecer(){
-        game.removeVisual(self)
+}
+
+class PowerUp inherits Modificador{
+	
+	method desaparecer(){
+		game.removeVisual(self)
         estaEnPantalla = false
-    }
+        powerup.play()
+	}
+}
+
+class PowerDown inherits Modificador{
+	
+	method desaparecer(){
+		game.removeVisual(self)
+        estaEnPantalla = false
+        powerdown.play()
+	}
 }
 
 //Buff
-object duplicarBalas inherits Modificador(imagen = "duplicadorBalas.png"){
+object duplicarBalas inherits PowerUp(imagen = "duplicadorBalas.png"){
 	
 	method chocarConBala(){
         navePrincipal.duplicarBalas()
         self.desaparecer()
     }
-	
 }
 
-object recuperarVida inherits Modificador(imagen = "recuperadorVida.png"){
+object recuperarVida inherits PowerUp(imagen = "recuperadorVida.png"){
 	
 	method chocarConBala(){
         navePrincipal.recuperarVida()
@@ -51,7 +64,7 @@ object recuperarVida inherits Modificador(imagen = "recuperadorVida.png"){
 }
 
 //Debuff
-object reducirBalas inherits Modificador(imagen = "reductorBalas.png"){
+object reducirBalas inherits PowerDown(imagen = "reductorBalas.png"){
 	
 	method chocarConBala(){
         navePrincipal.reducirBalas()
@@ -60,7 +73,7 @@ object reducirBalas inherits Modificador(imagen = "reductorBalas.png"){
 	
 }
 
-object inmovilizar inherits Modificador(imagen = "inmovilizador.png"){
+object inmovilizar inherits PowerDown(imagen = "inmovilizador.png"){
 	
 	method chocarConBala(){
         navePrincipal.inmovilizar()
