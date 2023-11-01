@@ -29,13 +29,15 @@ class NaveEnemiga {
 	
 	//Chocar
 	method chocarConBala(){
-		if (vidaEnemigo == 1) self.desaparecer() else vidaEnemigo-=1
+		if (vidaEnemigo == 1){
+			self.desaparecer()
+			enemigoEliminado.play()
+		}  else vidaEnemigo-=1
 	}
 
 	method desaparecer(){
 		game.removeVisual(self)
     	game.removeTickEvent(self.nombre())
-    	enemigoEliminado.play()
 	} 
 }
 
