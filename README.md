@@ -13,7 +13,10 @@
 
 ## Capturas
 
-(agregar)
+![captura1](https://github.com/pdepjm/2023-o-tpi-game-peixe/blob/master/assets/captura1.png)
+![captura2](https://github.com/pdepjm/2023-o-tpi-game-peixe/blob/master/assets/captura2.png)
+![captura3](https://github.com/pdepjm/2023-o-tpi-game-peixe/blob/master/assets/captura3.png)
+![captura4](https://github.com/pdepjm/2023-o-tpi-game-peixe/blob/master/assets/captura4.png)
 
 ## Reglas de Juego / Instrucciones
 
