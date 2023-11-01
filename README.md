@@ -21,7 +21,7 @@
 - La nave tiene 3 vidas, ¡Cuidalas!
 - La nave se mueve de izquierda a derecha y puede disparar hasta 4 balas
 - Hay 3 tipos de enemigos, cada uno con vida y velocidades distintas
-- Hay 4 tipo de modificadores, 2 powerUps y 2 powerDowns
+- Hay 4 tipos de modificadores, 2 powerUps y 2 powerDowns
 
 ## Otros
 
