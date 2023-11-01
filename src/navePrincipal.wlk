@@ -187,6 +187,8 @@ object vida {
 object score {
 
     var score = 0
+    
+    method score() = score
 
     method position() = game.at(0, 14)
 
@@ -204,4 +206,19 @@ object score {
 
     method chocarConBala(){}
 
+}
+
+object record {
+	
+	var record
+	
+	method position() = game.at(game.center().x(), 5)
+    
+    method mejorScore(){
+    	record = score.score().max(record)
+    }
+    
+    method text() = "RECORD: " + record.toString()
+    
+    method textColor() = "FFFFFFFF"
 }

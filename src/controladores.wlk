@@ -10,11 +10,13 @@ object iniciador{
 	method iniciar() {
 	 	
 	 	game.addVisual(cartelInicio)
+	 	game.addVisual(record)
 	 	
 	 	keyboard.enter().onPressDo({
 			if (not self.juegoEjecutandose()) { 
 	 			self.juegoEjecutandose(true)
 	 			game.removeVisual(cartelInicio)
+	 			game.removeVisual(record)
 	 			
 				game.addVisual(navePrincipal)
 				game.addVisual(vida)
