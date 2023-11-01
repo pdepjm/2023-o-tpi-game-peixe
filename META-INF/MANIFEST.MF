@@ -4,7 +4,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: proyectoBase
 Bundle-Vendor: My Company
 Bundle-Version: 1.0.0.qualifier
-Bundle-SymbolicName: juego;singleton:=true
+Bundle-SymbolicName: Wollok_Space_War;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.ibm.icu,
  org.eclipse.xtext,
