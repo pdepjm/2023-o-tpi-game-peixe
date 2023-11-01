@@ -64,6 +64,7 @@ object navePrincipal {
 			game.addVisual(gameOver)
 			gameover.play()
 			musicaFondo.pausar()
+			record.probarNuevoRecord(score.score())
 			game.schedule(4000, {
 				iniciador.juegoEjecutandose(false)
 				iniciador.reiniciar()
@@ -210,15 +211,15 @@ object score {
 
 object record {
 	
-	var record
+	var record = 0
+	
+	method probarNuevoRecord (puntaje) {
+		record = record.max(puntaje)
+	}
 	
 	method position() = game.at(game.center().x(), 5)
     
-    method mejorScore(){
-    	record = score.score().max(record)
-    }
-    
-    method text() = "RECORD: " + record.toString()
+    method text() = "Record: " + record.toString()
     
     method textColor() = "FFFFFFFF"
 }
