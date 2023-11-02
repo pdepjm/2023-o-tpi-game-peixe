@@ -11,7 +11,39 @@ object iniciador{
 	 	
 	 	game.addVisual(cartelInicio)
 	 	game.addVisual(record)
+
+		var puedoPresionarA = false
+	 	var puedoPresionarT = false
+	 	var puedoPresionarO = false
 	 	
+	 	keyboard.p().onPressDo({ 
+	 		if (not self.juegoEjecutandose() && not game.hasVisual(pato)) {
+	 			puedoPresionarA = true
+	 		}
+	 	})
+	 	
+	 	keyboard.a().onPressDo({ 
+	 		if (not self.juegoEjecutandose() && puedoPresionarA) {
+	 			puedoPresionarT = true
+	 		}
+	 	})
+	 	
+	 	keyboard.t().onPressDo({ 
+	 		if (not self.juegoEjecutandose() && puedoPresionarT) {
+	 			puedoPresionarO = true
+	 		}
+	 	})
+	 	
+	 	keyboard.o().onPressDo({ 
+	 		if (not self.juegoEjecutandose() && puedoPresionarO) {
+	 			game.addVisual(pato)
+	 			puedoPresionarA = false
+	 			puedoPresionarT = false
+	 			puedoPresionarO = false
+	 			game.schedule(1000, {game.removeVisual(pato)})
+	 		}
+	 	})
+
 	 	keyboard.enter().onPressDo({
 			if (not self.juegoEjecutandose()) { 
 	 			self.juegoEjecutandose(true)
@@ -150,4 +182,10 @@ object musicaFondo{
 	method resumir(){
 		musiquita.resume()
 	}
+}
+
+object pato{
+	method position() = game.at(-5, -19)
+	
+	method image() = "pato.png"
 }
