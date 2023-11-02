@@ -106,6 +106,9 @@ object navePrincipal {
         limiteBalas = 4
         puedeMoverse = true
         puedoDisparar = true
+        cantBalas = 0
+        balas.clear()
+        balas.addAll(["bala1", "bala2", "bala3", "bala4", "bala5", "bala6", "bala7", "bala8"])
         score.resetear()
     }
 }
@@ -142,13 +145,15 @@ class Bala {
 
         game.onTick(200, self.nombre(), { self.moverHaciaArriba() })
 
-        game.whenCollideDo(self, {enemigo => 
-            enemigo.chocarConBala()
-            self.desaparecer()
-        })
+        game.whenCollideDo(self, {enemigo => self.chocarConEnemigo(enemigo)})
     }
 
 	//Chocar
+	method chocarConEnemigo(enemigo) {
+        enemigo.chocarConBala()
+        self.desaparecer()
+	}
+	
     method desaparecer(){
     	if (self.enPantalla()){
         	game.removeVisual(self)

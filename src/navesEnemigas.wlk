@@ -21,6 +21,9 @@ class NaveEnemiga {
 	//Nombre
 	method nombre() = nombre
 	
+	//Vida (Para tests)
+	method vidaEnemigo() = vidaEnemigo
+	
 	//Movimiento
 	method moverHaciaAbajo() {
 		self.position(position.down(1))

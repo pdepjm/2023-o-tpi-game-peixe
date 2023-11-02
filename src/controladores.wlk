@@ -45,6 +45,18 @@ object iniciador{
                 	const naveChiquita = new NaveChiquita(nombre = "naveChiquita4", imagen = imgEnemigas.anyOne())
                     game.addVisual(naveChiquita)
                     game.onTick(400, naveChiquita.nombre(), {naveChiquita.moverHaciaAbajo()})
+                }, {
+                	const naveChiquita = new NaveChiquita(nombre = "naveChiquita5", imagen = imgEnemigas.anyOne())
+                    game.addVisual(naveChiquita)
+                    game.onTick(450, naveChiquita.nombre(), {naveChiquita.moverHaciaAbajo()})
+                }, {
+                	const naveChiquita = new NaveChiquita(nombre = "naveChiquita6", imagen = imgEnemigas.anyOne())
+                    game.addVisual(naveChiquita)
+                    game.onTick(200, naveChiquita.nombre(), {naveChiquita.moverHaciaAbajo()})
+                }, {
+                	const naveChiquita = new NaveChiquita(nombre = "naveChiquita7", imagen = imgEnemigas.anyOne())
+                    game.addVisual(naveChiquita)
+                    game.onTick(100, naveChiquita.nombre(), {naveChiquita.moverHaciaAbajo()})
                 }]
 
                 game.onTick(2000, "generacion naves chiquitas", {navesChiquitas.anyOne().apply()})
