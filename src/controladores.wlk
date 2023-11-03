@@ -2,6 +2,7 @@ import wollok.game.*
 import navePrincipal.*
 import navesEnemigas.*
 import powerUps.*
+import sonidos.*
 
 object iniciador{
 	
@@ -145,6 +146,18 @@ object iniciador{
 	 	game.removeVisual(gameOver)
 	 	musicaFondo.resumir()
 	 	self.iniciar()
+	}
+	
+	method terminarPartida(){
+		game.clear()
+		game.addVisual(gameOver)
+		gameover.play()
+		musicaFondo.pausar()
+		record.probarNuevoRecord(score.score())
+		game.schedule(4000, {
+			self.juegoEjecutandose(false)
+			self.reiniciar()
+		})
 	}
 	
 }

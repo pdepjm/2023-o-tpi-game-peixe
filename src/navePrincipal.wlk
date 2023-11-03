@@ -60,15 +60,7 @@ object navePrincipal {
 		enemigo.desaparecer()
 		self.perderVida()
 		if (self.vida() == 0) {
-			game.clear()
-			game.addVisual(gameOver)
-			gameover.play()
-			musicaFondo.pausar()
-			record.probarNuevoRecord(score.score())
-			game.schedule(4000, {
-				iniciador.juegoEjecutandose(false)
-				iniciador.reiniciar()
-			})
+			iniciador.terminarPartida()
 		}
 	}
 	
