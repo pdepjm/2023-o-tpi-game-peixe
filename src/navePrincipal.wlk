@@ -222,7 +222,7 @@ object record {
 		record = record.max(puntaje)
 	}
 	
-	method position() = game.at(game.center().x(), 5)
+	method position() = game.at(game.center().x(), 6)
     
     method text() = "Record: " + record.toString()
     
