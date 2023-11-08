@@ -1,6 +1,59 @@
+import wollok.game.*
+import navePrincipal.*
+import navesEnemigas.*
+import powerUps.*
+import sonidos.*
 
-test "testX" {
-
-	assert.that(true)
-
+test "Cuando la nave principal choca con un enemigo debe perder vida" {
+	
+	const vidaInicial = navePrincipal.vida()
+	
+	const naveChiquita = new NaveChiquita(nombre = "naveTest", imagen = "")
+	game.addVisual(naveChiquita)
+	game.onTick(200, naveChiquita.nombre(), {})
+	navePrincipal.chocarConEnemigo(naveChiquita)
+	
+	assert.that(navePrincipal.vida() == vidaInicial - 1)
+	
 }
+
+test "Cuando un enemigo choca con la nave Principal, desaparece" {
+	
+	const naveChiquita = new NaveChiquita(nombre = "naveTest", imagen = "")
+	game.addVisual(naveChiquita)
+	game.onTick(200, naveChiquita.nombre(), {})
+	navePrincipal.chocarConEnemigo(naveChiquita)
+	
+	assert.that(not game.hasVisual(naveChiquita))
+	
+}
+
+test "Cuando una bala impacta con un enemigo, desaparece" {
+	
+	const naveGrande = new NaveGrande(nombre = "naveTest", imagen = "")
+	game.addVisual(naveGrande)
+	game.onTick(200, naveGrande.nombre(), {})
+	const bala = new Bala(nombre = "balaTest")
+	game.addVisual(bala)
+	game.onTick(200, bala.nombre(), {})
+	bala.chocarConEnemigo(naveGrande)
+	
+	assert.that(not bala.enPantalla())
+	
+}
+
+test "Cuando une enemigo choca con una bala, pierde vida" {
+	
+	const naveMediana = new NaveMediana(nombre = "naveTest", imagen = "")
+	const vidaEnemigoInicial = naveMediana.vidaEnemigo()
+	game.addVisual(naveMediana)
+	game.onTick(200, naveMediana.nombre(), {})
+	const bala = new Bala(nombre = "balaTest")
+	game.addVisual(bala)
+	game.onTick(200, bala.nombre(), {})
+	bala.chocarConEnemigo(naveMediana)
+	
+	assert.that(naveMediana.vidaEnemigo() == vidaEnemigoInicial - 1)
+	
+}
+
