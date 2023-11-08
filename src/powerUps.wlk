@@ -25,6 +25,10 @@ class Modificador{
 		estaEnPantalla = true
 	}
 	
+	method chocarConBala(){
+		self.desaparecer()
+	}
+	
 	method desaparecer(){
 		game.removeVisual(self)
         estaEnPantalla = false
@@ -34,16 +38,16 @@ class Modificador{
 
 class PowerUp inherits Modificador{
 	
-	method chocarConBala(){
-        self.desaparecer()
+	override method chocarConBala(){
+        super()
         powerup.play()
     }
 }
 
 class PowerDown inherits Modificador{
 	
-	method chocarConBala(){
-        self.desaparecer()
+	override method chocarConBala(){
+       	super()
         powerdown.play()
     }
 }
